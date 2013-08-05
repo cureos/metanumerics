@@ -1,9 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-#if !SILVERLIGHT
-using System.Data;
-#endif
 using System.Diagnostics;
 using System.Globalization;
 using System.Text;
@@ -280,7 +277,7 @@ namespace Meta.Numerics.Statistics {
     /// of descriptive statistics of the underlying population distribution, and statistical
     /// tests to compare the sample distribution to other sample distributions or theoretical models.</para>
     /// </remarks>
-    public sealed class Sample : ICollection<double>, IEnumerable<double>, IEnumerable {
+    public sealed partial class Sample : ICollection<double>, IEnumerable<double>, IEnumerable {
 
         private SampleStorage data;
 
@@ -1425,23 +1422,6 @@ namespace Meta.Numerics.Statistics {
             return (result);
 
         }
-
-#if !SILVERLIGHT
-        /// <summary>
-        /// Loads values from a data reader.
-        /// </summary>
-        /// <param name="reader">The data reader.</param>
-        /// <param name="dbIndex">The column number.</param>
-        public void Load (IDataReader reader, int dbIndex) {
-            if (reader == null) throw new ArgumentNullException("reader");
-            if (isReadOnly) throw new InvalidOperationException();
-            while (reader.Read()) {
-                if (reader.IsDBNull(dbIndex)) continue;
-                object value = reader.GetValue(dbIndex);
-                Add(Convert.ToDouble(value, CultureInfo.InvariantCulture));
-            }
-        }
-#endif
 
     }
 

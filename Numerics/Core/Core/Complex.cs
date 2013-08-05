@@ -13,10 +13,7 @@ namespace Meta.Numerics {
     /// <para>Version 4.0 of the .NET Framework introduced a Complex structure equivalent to this one. To maintain compatibility
     /// with earlier versions of the .NET Framework, Meta.Numerics maintains its own Complex structure.</para>
     /// </remarks>
-#if !SILVERLIGHT
-    [Serializable]
-#endif
-    public struct Complex : IEquatable<Complex> {
+    public partial struct Complex : IEquatable<Complex> {
 
         private double re;
         private double im;

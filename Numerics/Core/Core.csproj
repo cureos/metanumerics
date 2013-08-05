@@ -75,11 +75,14 @@
     <Compile Include="Core\Complex.cs" />
     <Compile Include="Core\ComplexMath.cs" />
     <Compile Include="Core\Exceptions.cs" />
+    <Compile Include="Core\Exceptions.NonPcl.cs" />
     <Compile Include="Core\Functions.cs" />
+    <Compile Include="Core\Interval.NonPcl.cs" />
     <Compile Include="Core\MoreMath.cs" />
     <Compile Include="Core\Point.cs" />
     <Compile Include="Core\Polynomial.cs" />
     <Compile Include="Core\PolynomialInterpolation.cs" />
+    <Compile Include="Core\UncertainValue.NonPcl.cs" />
     <Compile Include="Functions\AdvancedMath_Constants.cs" />
     <Compile Include="Functions\AdvancedMath_Coulomb.cs" />
     <Compile Include="Functions\AdvancedMath_Elliptic.cs" />
@@ -139,6 +142,7 @@
     <Compile Include="Statistics\Anova.cs" />
     <Compile Include="Statistics\BinaryContingencyTable.cs" />
     <Compile Include="Statistics\BivariateSample.cs" />
+    <Compile Include="Statistics\BivariateSample.NonPcl.cs" />
     <Compile Include="Statistics\ContingencyTable.cs" />
     <Compile Include="Statistics\DiscreteHistogram.cs" />
     <Compile Include="Statistics\Distributions\DiscreteAsContinuousDistribution.cs" />
@@ -148,7 +152,10 @@
     <Compile Include="Statistics\Distributions\SpearmanDistribution.cs" />
     <Compile Include="Statistics\Distributions\TransformedDistribution.cs" />
     <Compile Include="Statistics\Distributions\TruncatedNormalDistribution.cs" />
+    <Compile Include="Statistics\InsufficientDataException.NonPcl.cs" />
+    <Compile Include="Statistics\MultivariateSample.NonPcl.cs" />
     <Compile Include="Statistics\PrincipalComponentAnalysis.cs" />
+    <Compile Include="Statistics\Sample.NonPcl.cs" />
     <Compile Include="Statistics\UncertainMeasurement.cs" />
     <Compile Include="Statistics\Distributions\BernoulliDistribution.cs" />
     <Compile Include="Statistics\Distributions\BetaDistribution.cs" />
@@ -187,6 +194,7 @@
     <Compile Include="Core\UncertainValue.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Complex.NonPcl.cs" />
     <None Include="keypair.snk" />
     <None Include="Meta.Numerics.nuspec">
       <SubType>Designer</SubType>

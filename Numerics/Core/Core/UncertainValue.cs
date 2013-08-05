@@ -9,10 +9,7 @@ namespace Meta.Numerics {
     /// <summary>
     /// Represents a value with an associated uncertainty.
     /// </summary>
-#if !SILVERLIGHT
-    [Serializable]
-#endif
-    public struct UncertainValue {
+    public partial struct UncertainValue {
 
 		private double v;
 		private double u;
