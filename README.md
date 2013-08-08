@@ -3,6 +3,7 @@ Portable Meta Numerics
 
 This is a manual fork of ichbin's [Meta Numerics](https://metanumerics.codeplex.com/) project, with adaptations necessary to build Meta Numerics as a portable class library.
 
+Copyright (c) 2009-2013 ichbin and portable adaptations (c) 2013 Anders Gustafsson, Cureos AB. *Portable Meta Numerics* is licensed under the [Microsoft Public License (Ms-PL)](http://opensource.org/licenses/MS-PL).
 The portable class library currently targets:
 
 * Windows Store applications
