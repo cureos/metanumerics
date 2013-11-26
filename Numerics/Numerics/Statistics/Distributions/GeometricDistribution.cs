@@ -58,16 +58,16 @@ namespace Meta.Numerics.Statistics.Distributions {
         }
 
         /// <inheritdoc />
-        public override double LeftProbability (int k) {
-            if (k < 0) {
+        public override double LeftExclusiveProbability (int k) {
+            if (k <= 0) {
                 return (0.0);
             } else {
-                return (1.0 - MoreMath.Pow(q, k + 1));
+                return (1.0 - MoreMath.Pow(q, k));
             }
         }
 
         /// <inheritdoc />
-        public override double RightProbability (int k) {
+        public override double RightExclusiveProbability (int k) {
             if (k < 0) {
                 return (1.0);
             } else {

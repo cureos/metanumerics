@@ -1,4 +1,5 @@
 ﻿using System;
+using Meta.Numerics.Functions;
 
 namespace Meta.Numerics.Statistics.Distributions {
 
@@ -94,6 +95,21 @@ namespace Meta.Numerics.Statistics.Distributions {
                 return(CentralMomentFromRawMoment(n));
             }
         }
+
+        /// <inheritdoc />
+        internal override double Cumulant (int n) {
+            if (n < 0) {
+                throw new ArgumentOutOfRangeException("n");
+            } else if (n == 0) {
+                return (0.0);
+            } else if (n == 1) {
+                return (Mean);
+            } else {
+                // K_{r+1} = \frac{(2 r)!}{2^r r! \mu^{2r+1} \lambda^r} = \frac{(2r - 1)!! \mu^{2r+1}}{\lambda^r}
+                return (AdvancedIntegerMath.DoubleFactorial(2 * n - 3) * MoreMath.Pow(mu, 2 * n - 1) / MoreMath.Pow(lambda, n - 1));
+            }
+        }
+
 
         /// <inheritdoc />
         public override double ProbabilityDensity (double x) {

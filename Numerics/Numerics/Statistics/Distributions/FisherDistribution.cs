@@ -156,31 +156,37 @@ namespace Meta.Numerics.Statistics.Distributions {
             }
 		}
 
+        // The rth central moment is given by the hypergeometric function.
+        //   C_r = \left( \frac{m}{2-m} \right)^r _2F_1 ( n/2, -r; 1 - m/2; (2-m)/n )
+        // Using the known recursion on the 2nd argument of the hypergeometric function (A&S ##), we can derive the recursion
+        //   C_{r+1} = \frac{2 r m}{(m-2)(m-2(r+1))n} \left[ \frac{m(n+m-2)}{(m-2)} C_{r-1} + (2n + m - 2) C_r \right]
+        // We implement this recursion here.
+
         /// <inheritdoc />
-        public override double MomentAboutMean (int n) {
-            if (n < 0) {
-                throw new ArgumentOutOfRangeException("n");
-            } else if (n == 0) {
+        public override double MomentAboutMean (int r) {
+
+            if (r < 0) {
+                throw new ArgumentOutOfRangeException("r");
+            } else if (r == 0) {
                 return (1.0);
-            } else if (n == 1) {
-                return (0.0);
-            } else if (n == 2) {
-                return (Variance);
-            } else if (n == 3) {
-                if (nu2 <= 6.0) {
-                    return (Double.PositiveInfinity);
-                } else {
-                    double m = Mean;
-                    return (8 * m * m * m * (2 * nu1 + nu2 - 2.0) * (nu1 + nu2 - 2.0) / (nu1 * nu1) / (nu2 - 4.0) / (nu2 - 6.0));
-                }
             } else {
-                if (nu2 < 2.0 * n) {
-                    return (Double.PositiveInfinity);
-                } else {
-                    return (CentralMomentFromRawMoment(n));
+
+                if (2 * r >= nu2) return (Double.NaN);
+
+                double CM = 1.0;
+                double C = 0.0;
+
+                for (int k = 1; k < r; k++) {
+                    double CP = 2 * k * nu2 / ((nu2 - 2.0) * (nu2 - 2.0 * (k + 1)) * nu1) *
+                        (nu2 * (nu1 + nu2 - 2.0) / (nu2 - 2.0) * CM + (2.0 * nu1 + nu2 - 2.0) * C);
+                    CM = C;
+                    C = CP;
                 }
+
+                return (C);
             }
-		}
+        }
+
 
         /// <inheritdoc />
         public override double InverseLeftProbability (double P) {

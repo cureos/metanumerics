@@ -8,7 +8,7 @@ using System.Reflection;
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Meta Numerics")]
-[assembly: AssemblyCopyright("Copyright © Meta Numerics 2008-2012")]
+[assembly: AssemblyCopyright("Copyright © Meta Numerics 2008-2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -24,6 +24,6 @@ using System.Reflection;
 //
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
-[assembly: AssemblyVersion("2.2.0.0")]
-[assembly: AssemblyFileVersion("2.2.0.0")]
+[assembly: AssemblyVersion("3.0.0.0")]
+[assembly: AssemblyFileVersion("3.0.0.0")]
 

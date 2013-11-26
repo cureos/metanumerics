@@ -41,19 +41,19 @@ namespace Meta.Numerics.Statistics.Distributions {
         public abstract int Maximum { get; }
 
         /// <summary>
-        /// Computes the probability of obtaining a value less than or equal to the given value.
+        /// Computes the probability of obtaining a value less than the given value.
         /// </summary>
         /// <param name="k">The value.</param>
-        /// <returns>The total probability of obtaining a value less than or equal to <paramref name="k"/>.</returns>
-        /// <seealso cref="RightProbability"/>
-        public virtual double LeftProbability (int k) {
-            if (k < Minimum) {
+        /// <returns>The total probability of obtaining a value strictly less than <paramref name="k"/>.</returns>
+        /// <seealso cref="RightExclusiveProbability"/>
+        public virtual double LeftExclusiveProbability (int k) {
+            if (k <= Minimum) {
                 return (0.0);
-            } if (k >= Maximum) {
+            } if (k > Maximum) {
                 return (1.0);
             } else {
                 double P = 0.0;
-                for (int j =Minimum; j <= k; j++) {
+                for (int j = Minimum; j < k; j++) {
                     P += ProbabilityMass(j);
                 }
                 return (P);
@@ -61,12 +61,27 @@ namespace Meta.Numerics.Statistics.Distributions {
         }
 
         /// <summary>
+        /// Computes the probability of obtaining a value less than or equal to the given value.
+        /// </summary>
+        /// <param name="k">The value.</param>
+        /// <returns>The total probability of obtaining a value les than or equal to <paramref name="k"/>.</returns>
+        public virtual double LeftInclusiveProbability (int k) {
+            if (k < Minimum) {
+                return (0.0);
+            } else if (k >= Maximum) {
+                return (1.0);
+            } else {
+                return (LeftExclusiveProbability(k) + ProbabilityMass(k));
+            }
+        }
+
+        /// <summary>
         /// Computes the probability of obtaining a value greater than the given value.
         /// </summary>
         /// <param name="k">The value.</param>
-        /// <returns>The total probability of obtaining a value greater than <paramref name="k"/>.</returns>
-        /// <seealso cref="LeftProbability"/>
-        public virtual double RightProbability (int k) {
+        /// <returns>The total probability of obtaining a value strictly greater than <paramref name="k"/>.</returns>
+        /// <seealso cref="LeftExclusiveProbability"/>
+        public virtual double RightExclusiveProbability (int k) {
             if (k < Minimum) {
                 return (1.0);
             } else if (k >= Maximum) {
@@ -100,6 +115,7 @@ namespace Meta.Numerics.Statistics.Distributions {
         /// <param name="f">The function.</param>
         /// <returns>The expectation value of the function.</returns>
         public virtual double ExpectationValue (Func<int, double> f) {
+
             if (f == null) throw new ArgumentNullException("f");
 
             // to avoid running over the whole support when it is large, we move out from the mean
@@ -128,11 +144,7 @@ namespace Meta.Numerics.Statistics.Distributions {
         /// </summary>
         public virtual double Mean {
             get {
-                double mu = 0.0;
-                for (int k = Minimum; k <= Maximum; k++) {
-                    mu += ProbabilityMass(k) * k;
-                }
-                return (mu);
+                return (ExpectationValue((int k) => k));
             }
 
         }

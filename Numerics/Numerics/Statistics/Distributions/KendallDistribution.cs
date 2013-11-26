@@ -94,7 +94,7 @@ namespace Meta.Numerics.Statistics.Distributions {
             }
         }
 
-        public override double LeftProbability (int k) {
+        public override double LeftExclusiveProbability (int k) {
             if (k < 0) {
                 return (0.0);
             } else if (k >= counts.Length) {
@@ -104,7 +104,7 @@ namespace Meta.Numerics.Statistics.Distributions {
             }
         }
 
-        public override double RightProbability (int k) {
+        public override double RightExclusiveProbability (int k) {
             if (k < 0) {
                 return (1.0);
             } else if (k >= counts.Length) {

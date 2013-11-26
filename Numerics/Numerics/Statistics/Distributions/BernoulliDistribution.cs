@@ -9,7 +9,7 @@ namespace Meta.Numerics.Statistics.Distributions {
     /// </summary>
     /// <remarks>
     /// <para>A Bernoulli distribution describes a trial with two possible outcomes. These outcomes are usually called
-    /// "success" and "failure", but the same logic is applicable to any binary set of outcomes: right or left, true or false, etc.
+    /// "success" and "failure", but the same framework is applicable to any binary set of outcomes: right or left, true or false, male or female, dead or alive, etc.
     /// We represent the outcomes by 1 and 0, which are the only two integers for which the Bernoulli probability
     /// does not vanish. The parameter p is the probability of obtaining outcome 1.</para>
     /// <para>When multiple, independent Bernoulli trials are conducted, the binomial distribution (<see cref="BinomialDistribution"/>)
@@ -118,10 +118,10 @@ namespace Meta.Numerics.Statistics.Distributions {
         }
 
         /// <inheritdoc />
-        public override double LeftProbability (int k) {
-            if (k < 0) {
+        public override double LeftExclusiveProbability (int k) {
+            if (k <= 0) {
                 return (0.0);
-            } else if (k == 0) {
+            } else if (k == 1) {
                 return (q);
             } else {
                 return (1.0);
@@ -129,7 +129,7 @@ namespace Meta.Numerics.Statistics.Distributions {
         }
 
         /// <inheritdoc />
-        public override double RightProbability (int k) {
+        public override double RightExclusiveProbability (int k) {
             if (k < 0) {
                 return (1.0);
             } else if (k == 0) {

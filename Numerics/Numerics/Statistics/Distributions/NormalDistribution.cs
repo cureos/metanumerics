@@ -159,9 +159,13 @@ namespace Meta.Numerics.Statistics.Distributions {
         /// <inheritdoc />
         public override double InverseLeftProbability (double P) {
             if ((P < 0.0) || (P > 1.0)) throw new ArgumentOutOfRangeException("P");
+            double z = AdvancedMath.Probit(P, 1.0 - P);
+            return (mu + sigma * z);
+        }
 
-            double z = Global.SqrtTwo * AdvancedMath.InverseErf(2.0 * P - 1.0);
-
+        public override double InverseRightProbability (double Q) {
+            if ((Q < 0.0) || (Q > 1.0)) throw new ArgumentOutOfRangeException("Q");
+            double z = AdvancedMath.Probit(1.0 - Q, Q);
             return (mu + sigma * z);
         }
 

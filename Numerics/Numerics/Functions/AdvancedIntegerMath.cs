@@ -297,7 +297,8 @@ namespace Meta.Numerics.Functions {
         // use these numbers in any series expansion
 
         internal static readonly double[] Bernoulli = new double[] {
-            1.0, 1.0 / 6.0, -1.0 / 30.0, 1.0 / 42.0, -1.0 / 30.0, 5.0 / 66.0, -691.0 / 2730.0, 7.0 / 6.0, -3617.0 / 510.0
+            1.0, 1.0 / 6.0, -1.0 / 30.0, 1.0 / 42.0, -1.0 / 30.0, 5.0 / 66.0, -691.0 / 2730.0, 7.0 / 6.0,
+            -3617.0 / 510.0, 43867.0 / 798.0, -174611.0 / 330.0, 854513.0 / 138.0, -236364091.0 / 2730.0, 8553103.0 / 6.0, -23749461029.0 / 870.0, 8615841276005.0 / 14322.0
         };
 
         // the expansions in which they appear are asymptotic; the numbers grow rapidly after ~B_16

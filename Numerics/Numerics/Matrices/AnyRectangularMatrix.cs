@@ -99,7 +99,7 @@ namespace Meta.Numerics.Matrices {
             double norm = 0.0;
             for (int r = 0; r < RowCount; r++) {
                 for (int c = 0; c < ColumnCount; c++) {
-                    norm += MoreMath.Pow2(this[r, c]);
+                    norm += MoreMath.Sqr(this[r, c]);
                 }
             }
             return (Math.Sqrt(norm));

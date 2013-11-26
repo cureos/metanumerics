@@ -498,6 +498,18 @@ namespace Meta.Numerics.Statistics {
         }
 
         /// <summary>
+        /// Gets the sample skewness.
+        /// </summary>
+        /// <remarks>
+        /// <para>Skewness is the third central moment, measured in units of the appropriate power of the standard deviation.</para>
+        /// </remarks>
+        public double Skewness {
+            get {
+                return (MomentAboutMean(3) / Math.Pow(Variance, 3.0 / 2.0));
+            }
+        }
+
+        /// <summary>
         /// Computes the given sample moment.
         /// </summary>
         /// <param name="n">The order of the moment to compute.</param>
@@ -508,7 +520,7 @@ namespace Meta.Numerics.Statistics {
             } else if (n == 1) {
                 return (Mean);
             } else if (n == 2) {
-                return (Variance + MoreMath.Pow2(Mean));
+                return (Variance + MoreMath.Sqr(Mean));
             } else {
                 double M = 0.0;
                 for (int i = 0; i < data.Count; i++) {
@@ -1083,7 +1095,7 @@ namespace Meta.Numerics.Statistics {
             // determine between-group sum-of-squares
             double SSB = 0.0;
             for (int i = 0; i < samples.Count; i++) {
-                SSB += samples[i].Count * MoreMath.Pow2(samples[i].Mean - mean);
+                SSB += samples[i].Count * MoreMath.Sqr(samples[i].Mean - mean);
             }
 
             // determine degrees of freedom associated with each sum-of-squares

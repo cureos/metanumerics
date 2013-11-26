@@ -69,7 +69,7 @@ namespace Meta.Numerics.Statistics.Distributions {
                 return (1.0);
             } else {
                 int ki; double kf; ComputeEffectiveBin(x, out ki, out kf);
-                return (d.LeftProbability(ki) + kf * d.ProbabilityMass(ki));
+                return (d.LeftExclusiveProbability(ki) + kf * d.ProbabilityMass(ki));
             }
         }
 
@@ -81,7 +81,7 @@ namespace Meta.Numerics.Statistics.Distributions {
                 return (0.0);
             } else {
                 int ki; double kf; ComputeEffectiveBin(x, out ki, out kf);
-                return ((1.0 - kf) * d.ProbabilityMass(ki) + d.RightProbability(ki));
+                return ((1.0 - kf) * d.ProbabilityMass(ki) + d.RightExclusiveProbability(ki));
             }
         }
 

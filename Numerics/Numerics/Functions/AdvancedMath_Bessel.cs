@@ -46,9 +46,10 @@ namespace Meta.Numerics.Functions {
                 // if x is large enough, use asymptotic expansion
                 return (Bessel_Asymptotic(n, x).FirstSolutionValue);
             } else if ((x > n) && (n > 32)) {
-                // in this region, we can recurr upward from a smaller order m for which x is in the asymptotic region
-                // recurrence is stable for x > n (and therefore also x > m) because J and Y are of the same magnitude
-                // this is better than Miller's algorithm, because Miller's algorithm would require us to start from m >> x
+                // We are in the transition region \sqrt{n} < x < n^2. If x > n we are still allowed to recurr upward,
+                // and as long as we can find an n below us for which x lies in the asymptotic region, we have a value
+                // to recur upward from. In general we expect this to be better than Miller's algorithm, because
+                // it will require fewer recurrance steps.
 
                 int m = (int) Math.Floor(Math.Sqrt(2.0 * (x - 32.0)));
                 Debug.Assert(m <= n);
@@ -59,31 +60,61 @@ namespace Meta.Numerics.Functions {
                 return (J);
             } else {
                 // we are in the transition region; x is too large for the series but still less than n, so
-                // we can't use upward recurrence
+                // For x < n, upward recurrance is unstable since even a tiny mixture of the Y solution will come to dominate as n increases.
 
-                // in the transition region, use Miller's algorithm:
-                // recurr downward and use the sum rule to normalize the result
+                // Instead we will use Miller's algorithm: recurr downward from far above and use a sum rule to normalize the result
+                // The sum rule we will use is:
+                //   \sum_{k=-\infty}^{\infty} J_{2k}(x) = J_0(x) + 2 J_2(x) + 2 J_4(x) + \cdots = 1
 
-                // the height of the tower required depends on how many digits accuracy we need
-                int nmax = n + 32 + 32 * (int) Math.Ceiling(Math.Sqrt(n+1));
+                // As long as we start sufficiently far above, we can pick arbitrary starting values (say 0 and 1) because these contributes
+                // as so supressed compared to contributions from the order we care about. What high is sufficient? Lots of ink has been spilt
+                // on this. NR uses a formula of the form m = n + c \sqrt{n}, which they claim can be justified via some hueristic manipulation
+                // of limiting expressions that I cannot reproduce. The literature implies life isn't so simple. Olver gives the most convincing
+                // answer: run the recurrance up until it has produced a factor larger than the error supression you require. Then start back
+                // down from there. This is the approach we adopt.
+                double Pm1 = 0.0;
+                double P = 1.0;
+                int m = n;
+                while (Math.Abs(P) < 1.0E30) {
+                    double Pp1 = (2 * m) / x * P - Pm1;
+                    Pm1 = P;
+                    P = Pp1;
+                    m++;
+                }
+                //Debug.WriteLine(String.Format("nmax = {0}", m));
+
+                // These values grow fast. To avoid overflow, we will rescale our results if they get too big.
+                // Since we will multiply by (2k/x), which is greater than one since x < k, we set a limit
+                // that is smaller than the maximum double by this factor and a bit more.
+                double max = (Double.MaxValue / 16.0) / (2 * m / x); 
 
                 double Jp1 = 0.0;
-                double J = 1.0 / Math.Sqrt(x); // correct order of magnitude
-                double sum = 0.0;
-                for (int k = nmax; k > n; k--) {
+                double J = 1.0;
+                double sum = 0.0; // tracks the sum rule sum
+                double Jn = 0.0; // will hold the scaled value of J_n
+                for (int k = m; k > 0; k--) {
+                    // If k is even, add J to the running sum.
                     if ((k % 2) == 0) sum += J;
+                    // If this is the desired n, remember the value for later rescaling.
+                    if (k == n) Jn = J;
+                    // Apply the recurrence to get J_{k-1}.
                     double Jm1 = (2 * k) / x * J - Jp1;
+                    //Debug.WriteLine(String.Format("k={0} J={1} Jp1={2} sum={3}", k, J, Jp1, sum));
+                    // J_{k+1} => J_{k}, J_{k} -> J_{k-1} for the next iteration.
                     Jp1 = J;
                     J = Jm1;
+                    // If we are close to overflow, re-scale all quantities.
+                    if ((Math.Abs(J) > max) || (Math.Abs(sum) > max)) {
+                        J /= Double.MaxValue;
+                        Jp1 /= Double.MaxValue;
+                        sum /= Double.MaxValue;
+                        Jn /= Double.MaxValue;
+                    }
                 }
-                double Jn = J;
-                for (int k = n; k > 0; k--) {
-                    if ((k % 2) == 0) sum += J;
-                    double Jm1 = (2 * k) / x * J - Jp1;
-                    Jp1 = J;
-                    J = Jm1;
-                }
+                // Add J_0 to the sum.
                 sum = 2.0 * sum + J;
+                if (n == 0) Jn = J;
+                // Rescale and return J_n.
                 return (Jn / sum);
             }
         }
@@ -363,12 +394,13 @@ namespace Meta.Numerics.Functions {
 
         private static double BesselJ_Series (double nu, double x) {
             double z = x / 2.0;
-            double dJ = Math.Pow(z, nu) / AdvancedMath.Gamma(nu + 1.0);
+            double dJ = AdvancedMath.PowOverGammaPlusOne(z, nu);
+            //double dJ = Math.Pow(z, nu) / AdvancedMath.Gamma(nu + 1.0);
             double J = dJ;
             double zz = -z * z;
             for (int k = 1; k < Global.SeriesMax; k++) {
                 double J_old = J;
-                dJ = dJ * zz / (nu + k) / k;
+                dJ *= zz / (nu + k) / k;
                 J += dJ;
                 if (J == J_old) {
                     return (J);
@@ -891,7 +923,7 @@ namespace Meta.Numerics.Functions {
                 t *= (mu - k2 * k2);
                 P += t;
 
-                if ((Q == Q_old) && (P == P_old) && (R == R_old) && (S == S_old)) {
+                if ((P == P_old) && (Q == Q_old) && (R == R_old) && (S == S_old)) {
                     break;
                 }
 
@@ -899,17 +931,43 @@ namespace Meta.Numerics.Functions {
 
             }
 
-            //double t = x - ( 0.5 * nu + 0.25 ) * Math.PI;
-            //double s = Math.Sin(t);
-            //double c = Math.Cos(t);
-            double s = Sin(x, -(nu + 0.5)/4.0);
-            double c = Cos(x, -(nu + 0.5)/4.0);
-            //Console.WriteLine("t={0}  s={1}  c={2}", t, s, c);
-            //Console.WriteLine("t={0} sa={1} ca={2}", t, sa, ca);
+            // We attempted to move to a single trig evaluation so as to avoid errors when the two terms nearly cancel,
+            // but this seemed to cause problems, perhaps because the arctan angle cannot be determined with sufficient
+            // resolution. Investigate further.
+            /*
+            double M = N * MoreMath.Hypot(Q, P);
+            double phi = Math.Atan2(Q, P);
+            SolutionPair result2 = new SolutionPair(
+                M * Cos(x + phi, -(nu + 0.5) / 4.0),
+                -N * (R * s + S * c),
+                M * Sin(x + phi, -(nu + 0.5) / 4.0),
+                N * (R * c - S * s)
+            );
+             */
 
+            // Compute sin and cosine of x - (\nu + 1/2)(\pi / 2)
+            // Then we compute sine and cosine of (x1 - u1) with shift appropriate to (x0 - u0).
+
+            // For maximum accuracy, we first reduce x = (x_0 + x_1) (\pi / 2), where x_0 is an integer and -0.5 < x1 < 0.5
+            long x0; double x1;
+            RangeReduction.ReduceByPiHalves(x, out x0, out x1);
+
+            // Then we reduce (\nu + 1/2) = u_0 + u_1 where u_0 is an integer and -0.5 < u1 < 0.5
+            double u = nu + 0.5;
+            double ur = Math.Round(u);
+            long u0 = (long) ur;
+            double u1 = u - ur;
+
+            // FInally, we compute sine and cosine, having reduced the evaluation interval to -0.5 < \theta < 0.5
+            double s1 = RangeReduction.Sin(x0 - u0, x1 - u1);
+            double c1 = RangeReduction.Cos(x0 - u0, x1 - u1);
+
+            // Assemble the solution
             double N = Math.Sqrt(2.0 / Math.PI / x);
-
-            SolutionPair result = new SolutionPair(N * (c * P - s * Q), -N * (R * s + S * c), N * (s * P + c * Q), N * (R * c - S * s));
+            SolutionPair result = new SolutionPair(
+                N * (c1 * P - s1 * Q), -N * (R * s1 + S * c1),
+                N * (s1 * P + c1 * Q), N * (R * c1 - S * s1)
+            );
 
             return (result);
 
@@ -1061,7 +1119,7 @@ namespace Meta.Numerics.Functions {
             if (Math.Abs(x) < 0.25) {
                 return (SphericalBesselJ_SeriesZero(x));
             } else {
-                return (Math.Sin(x) / x);
+                return (MoreMath.Sin(x) / x);
             }
         }
 
@@ -1084,7 +1142,7 @@ namespace Meta.Numerics.Functions {
             } else if (Math.Abs(x) > 100.0) {
                 return (Math.Sqrt(Global.HalfPI / x) * Bessel_Asymptotic(1.5, x).FirstSolutionValue);
             } else {
-                return((Math.Sin(x) / x - Math.Cos(x)) / x);
+                return((MoreMath.Sin(x) / x - MoreMath.Cos(x)) / x);
             }
         }
 
@@ -1136,7 +1194,7 @@ namespace Meta.Numerics.Functions {
             if (Math.Abs(x) < 0.25) {
                 return (SphericalBesselY_SeriesZero(x));
             } else {
-                return (-Math.Cos(x) / x);
+                return (-MoreMath.Cos(x) / x);
             }
         }
 
@@ -1160,7 +1218,7 @@ namespace Meta.Numerics.Functions {
             } else if (Math.Abs(x) > 100.0) {
                 return (Math.Sqrt(Global.HalfPI / x) * Bessel_Asymptotic(1.5, x).SecondSolutionValue);
             } else {
-                return(-(Math.Cos(x)/x + Math.Sin(x))/x);
+                return(-(MoreMath.Cos(x)/x + MoreMath.Sin(x))/x);
             }
         }
 
@@ -1196,90 +1254,6 @@ namespace Meta.Numerics.Functions {
             double j0 = SphericalBesselJ_Zero(x);
             return ((j0 / j) * jn);
 
-        }
-
-    }
-
-
-    /// <summary>
-    /// Contains a pair of solutions to a differential equation.
-    /// </summary>
-    /// <remarks>
-    /// <para>Any linear second order differential equation has two independent solutions. For example,
-    /// the Bessel differential equation (<see cref="AdvancedMath.Bessel"/>) has solutions J and Y,
-    /// the Coulomb wave equation has solutions F and G,
-    /// and the Airy differential equation has solutions Ai and Bi.</para>
-    /// <para>A solution pair structure contains values for both solutions and for their derivatives. It is often useful to
-    /// have all this information together when fitting boundary conditions.</para>
-    /// <para>Which solution is considered the first and which is considered the second is
-    /// a matter of convention. When one solution is regular (finite) at the origin and the other is not, we take the regular solution
-    /// to be the first.</para>
-    /// </remarks>
-    public struct SolutionPair {
-
-        private double j, jPrime, y, yPrime;
-
-        /// <summary>
-        /// Gets the value of the first solution.
-        /// </summary>
-        public double FirstSolutionValue {
-            get {
-                return (j);
-            }
-            internal set {
-                j = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets the derivative of the first solution.
-        /// </summary>
-        public double FirstSolutionDerivative {
-            get {
-                return (jPrime);
-            }
-            internal set {
-                jPrime = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets the value of the second solution.
-        /// </summary>
-        public double SecondSolutionValue {
-            get {
-                return (y);
-            }
-            internal set {
-                y = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets the derivative of the second solution.
-        /// </summary>
-        public double SecondSolutionDerivative {
-            get {
-                return (yPrime);
-            }
-            internal set {
-                yPrime = value;
-            }
-        }
-
-        /*
-        public double Wronskian {
-            get {
-                return (j * yPrime - y * jPrime);
-            }
-        }
-        */
-        
-       internal SolutionPair (double j, double jPrime, double y, double yPrime) {
-            this.j = j;
-            this.jPrime = jPrime;
-            this.y = y;
-            this.yPrime = yPrime;
         }
 
     }

@@ -36,7 +36,7 @@ namespace Meta.Numerics {
 
         public static readonly double SqrtPI = Math.Sqrt(Math.PI);
 
-        public static readonly double SqrtTwoPI = Math.Sqrt(TwoPI);
+        public const double SqrtTwoPI = 2.5066282746310005024; // Math.Sqrt(TwoPI) is off by 2 X 10^{-16} from nearest representable value
 
         public static readonly double SqrtHalfPI = Math.Sqrt(HalfPI);
 

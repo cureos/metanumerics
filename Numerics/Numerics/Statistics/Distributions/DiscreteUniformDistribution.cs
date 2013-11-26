@@ -80,18 +80,18 @@ namespace Meta.Numerics.Statistics.Distributions {
         }
 
         /// <inheritdoc />
-        public override double LeftProbability (int k) {
-            if (k < a) {
+        public override double LeftExclusiveProbability (int k) {
+            if (k <= a) {
                 return (0.0);
-            } else if (k >= b) {
+            } else if (k > b) {
                 return (1.0);
             } else {
-                return ((k - a + 1) / ((double) n));
+                return ((k - a) / ((double) n));
             }
         }
 
         /// <inheritdoc />
-        public override double RightProbability (int k) {
+        public override double RightExclusiveProbability (int k) {
             if (k < a) {
                 return (1.0);
             } else if (k >= b) {

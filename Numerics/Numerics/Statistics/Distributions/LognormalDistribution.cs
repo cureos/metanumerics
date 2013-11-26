@@ -175,7 +175,7 @@ namespace Meta.Numerics.Statistics.Distributions {
             if (n < 0) {
                 throw new ArgumentOutOfRangeException("n");
             } else {
-                return (Math.Exp(n * mu + MoreMath.Pow2(n * sigma) / 2.0));
+                return (Math.Exp(n * mu + MoreMath.Sqr(n * sigma) / 2.0));
             }
         }
 
@@ -197,7 +197,7 @@ namespace Meta.Numerics.Statistics.Distributions {
 
                 double C = 0.0;
                 for (int i = 0; i <= n; i++) {
-                    double dC = AdvancedIntegerMath.BinomialCoefficient(n, i) * Math.Exp((MoreMath.Pow2(n - i) + i) * s2);
+                    double dC = AdvancedIntegerMath.BinomialCoefficient(n, i) * Math.Exp((MoreMath.Sqr(n - i) + i) * s2);
                     if (i % 2 != 0) dC = -dC;
                     C += dC;
                 }

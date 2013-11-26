@@ -103,7 +103,7 @@ namespace Meta.Numerics.Statistics.Distributions {
         // If we use exclusive summation, we get P = 0 at left boundary but P < 1 at right boundary
         // If we use inclusive summation, we get P = 1 at right bountary but P > 1 at left boundary
 
-        public override double LeftProbability (int k) {
+        public override double LeftExclusiveProbability (int k) {
             if (k < sMin) {
                 return (0.0);
             } else if (k > sMax) {
@@ -113,7 +113,7 @@ namespace Meta.Numerics.Statistics.Distributions {
             }
         }
 
-        public override double RightProbability (int k) {
+        public override double RightExclusiveProbability (int k) {
             if (k < sMin) {
                 return (1.0);
             } else if (k > sMax) {

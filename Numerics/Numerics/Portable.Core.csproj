@@ -43,6 +43,13 @@
     <None Include="keypair.snk" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Analysis\FunctionMath.cs" />
+    <Compile Include="Analysis\FunctionMath_Differentiate.cs" />
+    <Compile Include="Analysis\FunctionMath_Extrema.cs" />
+    <Compile Include="Analysis\FunctionMath_Integrate.cs" />
+    <Compile Include="Analysis\FunctionMath_MultiExtrema.cs" />
+    <Compile Include="Analysis\FunctionMath_MultiIntegrate.cs" />
+    <Compile Include="Analysis\FunctionMath_Roots.cs" />
     <Compile Include="Core\BigFloat.cs" />
     <Compile Include="Core\Complex.cs" />
     <Compile Include="Core\ComplexMath.cs" />
@@ -72,14 +79,8 @@
     <Compile Include="Functions\AdvancedMath_ModifiedBessel.cs" />
     <Compile Include="Functions\AdvancedMath_Polylog.cs" />
     <Compile Include="Functions\AdvancedMath_Riemann.cs" />
-    <Compile Include="Functions\FunctionMath.cs" />
-    <Compile Include="Functions\FunctionMath_Differentiate.cs" />
-    <Compile Include="Functions\FunctionMath_Extrema.cs" />
-    <Compile Include="Functions\FunctionMath_Integrate.cs" />
-    <Compile Include="Functions\FunctionMath_MultiExtrema.cs" />
-    <Compile Include="Functions\FunctionMath_MultiIntegrate.cs" />
-    <Compile Include="Functions\FunctionMath_Roots.cs" />
     <Compile Include="Functions\OrthogonalPolynomials.cs" />
+    <Compile Include="Functions\SolutionPair.cs" />
     <Compile Include="Matrices\AnyMatrix.cs" />
     <Compile Include="Matrices\AnyRectangularMatrix.cs" />
     <Compile Include="Matrices\AnySquareMatrix.cs" />
@@ -136,6 +137,7 @@
     <Compile Include="Statistics\Distributions\LogisticDistribution.cs" />
     <Compile Include="Statistics\Distributions\LognormalDistribution.cs" />
     <Compile Include="Statistics\Distributions\MannWhitneyDistribution.cs" />
+    <Compile Include="Statistics\Distributions\MomentMath.cs" />
     <Compile Include="Statistics\Distributions\NormalDistribution.cs" />
     <Compile Include="Statistics\Distributions\ParetoDistribution.cs" />
     <Compile Include="Statistics\Distributions\PearsonRDistribution.cs" />

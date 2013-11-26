@@ -60,7 +60,7 @@ namespace Meta.Numerics {
         /// <returns>The value of e<sup>z</sup>.</returns>
         public static Complex Exp (Complex z) {
             double m = Math.Exp(z.Re);
-            return (new Complex(m * AdvancedMath.Cos(z.Im, 0.0), m * AdvancedMath.Sin(z.Im, 0.0)));
+            return (new Complex(m * MoreMath.Cos(z.Im), m * MoreMath.Sin(z.Im)));
         }
 
         /// <summary>
@@ -70,6 +70,16 @@ namespace Meta.Numerics {
         /// <returns>The value of ln(z).</returns>
         public static Complex Log (Complex z) {
             return (new Complex(Math.Log(Abs(z)), Arg(z)));
+        }
+
+
+        /// <summary>
+        /// Computes the square of a complex number.
+        /// </summary>
+        /// <param name="z">The argument.</param>
+        /// <returns>The value of z<sup>2</sup>.</returns>
+        public static Complex Sqr (Complex z) {
+            return (z * z);
         }
 
         /// <summary>
@@ -95,7 +105,7 @@ namespace Meta.Numerics {
             double q = 1 / p;
             double sinh = (p - q) / 2.0;
             double cosh = (p + q) / 2.0;
-            return (new Complex(Math.Sin(z.Re) * cosh, Math.Cos(z.Re) * sinh));
+            return (new Complex(MoreMath.Sin(z.Re) * cosh, MoreMath.Cos(z.Re) * sinh));
         }
 
         /// <summary>
@@ -119,7 +129,7 @@ namespace Meta.Numerics {
             double q = 1 / p;
             double sinh = (p - q) / 2.0;
             double cosh = (p + q) / 2.0;
-            return (new Complex(Math.Cos(z.Re) * cosh, -Math.Sin(z.Re) * sinh));
+            return (new Complex(MoreMath.Cos(z.Re) * cosh, -MoreMath.Sin(z.Re) * sinh));
         }
 
         /// <summary>
@@ -146,13 +156,13 @@ namespace Meta.Numerics {
             double cosh = (p + q) / 2.0;
             if (Math.Abs(z.Im) < 4.0) {
                 double sinh = (p - q) / 2.0;
-                double D = Math.Cos(x2) + cosh;
-                return (new Complex(Math.Sin(x2) / D, sinh / D));
+                double D = MoreMath.Cos(x2) + cosh;
+                return (new Complex(MoreMath.Sin(x2) / D, sinh / D));
             } else {
                 // when Im(z) gets too large, sinh and cosh individually blow up
                 // but ratio is still ~1, so rearrage to use tanh instead
                 double F = (1.0 + Math.Cos(x2) / cosh);
-                return (new Complex(Math.Sin(x2) / cosh / F, Math.Tanh(y2) / F));
+                return (new Complex(MoreMath.Sin(x2) / cosh / F, Math.Tanh(y2) / F));
             }
         }
 
@@ -176,7 +186,7 @@ namespace Meta.Numerics {
         public static Complex Pow (Complex z, double p) {
             double m = Math.Pow(Abs(z), p);
             double t = Arg(z) * p;
-            return (new Complex(m * Math.Cos(t), m * Math.Sin(t)));
+            return (new Complex(m * MoreMath.Cos(t), m * MoreMath.Sin(t)));
         }
 
         /// <summary>
@@ -191,7 +201,7 @@ namespace Meta.Numerics {
             if (x == 0.0) return (0.0);
             double m = Math.Pow(x, z.Re);
             double t = Math.Log(x) * z.Im;
-            return (new Complex(m * Math.Cos(t), m * Math.Sin(t)));
+            return (new Complex(m * MoreMath.Cos(t), m * MoreMath.Sin(t)));
         }
 
         /// <summary>

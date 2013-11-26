@@ -30,7 +30,7 @@ namespace Meta.Numerics.Functions {
         /// </remarks>
         /// <exception cref="InvalidOperationException">An integrand of dimension greater than 8 was specified.</exception>
         /// <exception cref="NonconvergenceException">The integral could not be determined to the specified accuracy within the given evaluation budget.</exception>
-        public static double Integrate (Func<double[], double> integrand, IList<Interval> volume) {
+        public static double Integrate (Func<IList<double>, double> integrand, IList<Interval> volume) {
             return(Integrate(integrand, volume, null));
         }
 
@@ -41,7 +41,7 @@ namespace Meta.Numerics.Functions {
         /// <param name="volume">The box defining the volume over with to integrate.</param>
         /// <param name="settings">The evaluation settings to use.</param>
         /// <returns>The value of the integral.</returns>
-        public static double Integrate (Func<double[], double> integrand, IList<Interval> volume, EvaluationSettings settings) {
+        public static double Integrate (Func<IList<double>, double> integrand, IList<Interval> volume, EvaluationSettings settings) {
 
             if (integrand == null) throw new ArgumentNullException("integrand");
             if (volume == null) throw new ArgumentNullException("volume");
