@@ -20,4 +20,4 @@ By manually re-targeting the PCL project, the library can also be built to targe
 
 The solution contains one portable and one .NET only class library project. Except for binary serialization and ADO.NET support that is only available in the .NET dedicated library, these two projects share exactly the same code.
 
-*Portable Meta Numerics* aims to follow closely the updates of source code and binary releases made of *ichbin's Meta Numerics*. Currently, *Portable Meta Numerics* is related to *Meta Numerics* commit [72078](https://metanumerics.codeplex.com/SourceControl/changeset/72078) and release [2.2.0](https://metanumerics.codeplex.com/releases/view/110664).
+*Portable Meta Numerics* aims to follow closely the updates of source code and binary releases made of *ichbin's Meta Numerics*. Currently, *Portable Meta Numerics* is related to *Meta Numerics* changeset [72421](https://metanumerics.codeplex.com/SourceControl/changeset/72421).
