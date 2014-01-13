@@ -90,6 +90,7 @@
     <Compile Include="Matrices\ComplexEigensystem.cs" />
     <Compile Include="Matrices\ComplexVector.cs" />
     <Compile Include="Matrices\Interfaces.cs" />
+    <Compile Include="Matrices\LUDecomposition.cs" />
     <Compile Include="Matrices\QRDecomposition.cs" />
     <Compile Include="Matrices\RealEigensystem.cs" />
     <Compile Include="Matrices\RectangularMatrix.cs" />
@@ -97,7 +98,6 @@
     <Compile Include="Matrices\RowVector.cs" />
     <Compile Include="Matrices\SingularValueDecomposition.cs" />
     <Compile Include="Matrices\SparseSquareMatrix.cs" />
-    <Compile Include="Matrices\SquareLUDecomposition.cs" />
     <Compile Include="Matrices\SquareMatrix.cs" />
     <Compile Include="Matrices\SquareMatrixAlgorithms.cs" />
     <Compile Include="Matrices\SquareQRDecomposition.cs" />
@@ -105,6 +105,11 @@
     <Compile Include="Matrices\TridiagonalMatrix.cs" />
     <Compile Include="Matrices\VectorBase.cs" />
     <Compile Include="Matrices\Vectors.cs" />
+    <Compile Include="Messages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Messages.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.Pcl.cs" />
     <Compile Include="SignalProcessing\FourierAlgorithms.cs" />
     <Compile Include="SignalProcessing\FourierTransformer.cs" />
@@ -133,6 +138,7 @@
     <Compile Include="Statistics\Distributions\IDeviateGenerator.cs" />
     <Compile Include="Statistics\Distributions\KendallDistribution.cs" />
     <Compile Include="Statistics\Distributions\KolmogorovDistribution.cs" />
+    <Compile Include="Statistics\Distributions\KolmogorovTwoSampleExactDistribution.cs" />
     <Compile Include="Statistics\Distributions\KuiperDistribution.cs" />
     <Compile Include="Statistics\Distributions\LogisticDistribution.cs" />
     <Compile Include="Statistics\Distributions\LognormalDistribution.cs" />
@@ -148,6 +154,7 @@
     <Compile Include="Statistics\Distributions\TriangularDistribution.cs" />
     <Compile Include="Statistics\Distributions\TruncatedNormalDistribution.cs" />
     <Compile Include="Statistics\Distributions\UniformDistribution.cs" />
+    <Compile Include="Statistics\Distributions\UnivariateDistribution.cs" />
     <Compile Include="Statistics\Distributions\WaldDistribution.cs" />
     <Compile Include="Statistics\Distributions\WeibullDistribution.cs" />
     <Compile Include="Statistics\FitResult.cs" />
@@ -159,6 +166,12 @@
     <Compile Include="Statistics\TestResult.cs" />
     <Compile Include="Statistics\UncertainMeasurement.cs" />
     <Compile Include="Statistics\UncertainMeasurementSample.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Messages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

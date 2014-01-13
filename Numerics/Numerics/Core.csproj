@@ -18,10 +18,14 @@
     <SignAssembly>true</SignAssembly>
     <DelaySign>false</DelaySign>
     <AssemblyOriginatorKeyFile>keypair.snk</AssemblyOriginatorKeyFile>
-    <SccProjectName>%24/metanumerics/Numerics/Core</SccProjectName>
-    <SccLocalPath>.</SccLocalPath>
-    <SccAuxPath>https://tfs.codeplex.com/tfs/tfs10</SccAuxPath>
-    <SccProvider>{4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}</SccProvider>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
@@ -98,10 +102,16 @@
     <Compile Include="Functions\AdvancedMath_Polylog.cs" />
     <Compile Include="Functions\SolutionPair.cs" />
     <Compile Include="Matrices\ColumnVector.cs" />
+    <Compile Include="Matrices\LUDecomposition.cs" />
     <Compile Include="Matrices\RowVector.cs" />
     <Compile Include="Matrices\SingularValueDecomposition.cs" />
     <Compile Include="Matrices\SparseSquareMatrix.cs" />
     <Compile Include="Matrices\SquareMatrixAlgorithms.cs" />
+    <Compile Include="Messages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Messages.resx</DependentUpon>
+    </Compile>
     <Compile Include="SignalProcessing\FourierAlgorithms.cs" />
     <Compile Include="SignalProcessing\FourierTransformer.cs" />
     <Compile Include="Special\Spin.cs" />
@@ -127,7 +137,6 @@
     <Compile Include="Matrices\RealEigensystem.cs" />
     <Compile Include="Matrices\RectangularMatrix.cs" />
     <Compile Include="Matrices\AnyRectangularMatrix.cs" />
-    <Compile Include="Matrices\SquareLUDecomposition.cs" />
     <Compile Include="Matrices\RectangularMatrixAlgorithms.cs" />
     <Compile Include="Matrices\AnyMatrix.cs" />
     <Compile Include="Matrices\SquareMatrix.cs" />
@@ -150,10 +159,12 @@
     <Compile Include="Statistics\Distributions\GumbelDistribution.cs" />
     <Compile Include="Statistics\Distributions\IDeviateGenerator.cs" />
     <Compile Include="Statistics\Distributions\KendallDistribution.cs" />
+    <Compile Include="Statistics\Distributions\KolmogorovTwoSampleExactDistribution.cs" />
     <Compile Include="Statistics\Distributions\MomentMath.cs" />
     <Compile Include="Statistics\Distributions\SpearmanDistribution.cs" />
     <Compile Include="Statistics\Distributions\TransformedDistribution.cs" />
     <Compile Include="Statistics\Distributions\TruncatedNormalDistribution.cs" />
+    <Compile Include="Statistics\Distributions\UnivariateDistribution.cs" />
     <Compile Include="Statistics\InsufficientDataException.NonPcl.cs" />
     <Compile Include="Statistics\MultivariateSample.NonPcl.cs" />
     <Compile Include="Statistics\PrincipalComponentAnalysis.cs" />
@@ -219,6 +230,12 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Messages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
