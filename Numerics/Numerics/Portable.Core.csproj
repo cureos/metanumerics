@@ -43,6 +43,8 @@
     <None Include="keypair.snk" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Analysis\EvaluationSettings.cs" />
+    <Compile Include="Analysis\Extremum.cs" />
     <Compile Include="Analysis\FunctionMath.cs" />
     <Compile Include="Analysis\FunctionMath_Differentiate.cs" />
     <Compile Include="Analysis\FunctionMath_Extrema.cs" />
@@ -103,6 +105,7 @@
     <Compile Include="Matrices\SquareQRDecomposition.cs" />
     <Compile Include="Matrices\SymmetricMatrix.cs" />
     <Compile Include="Matrices\TridiagonalMatrix.cs" />
+    <Compile Include="Matrices\VectorAlgorithms.cs" />
     <Compile Include="Matrices\VectorBase.cs" />
     <Compile Include="Matrices\Vectors.cs" />
     <Compile Include="Messages.Designer.cs">

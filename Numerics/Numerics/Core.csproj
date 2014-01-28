@@ -75,6 +75,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Analysis\EvaluationSettings.cs" />
+    <Compile Include="Analysis\Extremum.cs" />
     <Compile Include="Analysis\FunctionMath.cs" />
     <Compile Include="Analysis\FunctionMath_Differentiate.cs" />
     <Compile Include="Analysis\FunctionMath_Extrema.cs" />
@@ -107,6 +109,7 @@
     <Compile Include="Matrices\SingularValueDecomposition.cs" />
     <Compile Include="Matrices\SparseSquareMatrix.cs" />
     <Compile Include="Matrices\SquareMatrixAlgorithms.cs" />
+    <Compile Include="Matrices\VectorAlgorithms.cs" />
     <Compile Include="Messages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
