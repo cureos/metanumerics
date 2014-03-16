@@ -84,6 +84,10 @@
     <Compile Include="Analysis\FunctionMath_MultiExtrema.cs" />
     <Compile Include="Analysis\FunctionMath_MultiIntegrate.cs" />
     <Compile Include="Analysis\FunctionMath_Roots.cs" />
+    <Compile Include="Analysis\IntegrationResult.cs" />
+    <Compile Include="Analysis\MultiFunctionMath_Integrate.cs" />
+    <Compile Include="Analysis\MultiFunctionMath_Integrate_GenzMalik.cs" />
+    <Compile Include="Analysis\MultiFunctionMath_Integrate_MonteCarlo.cs" />
     <Compile Include="Core\BigFloat.cs" />
     <Compile Include="Core\Complex.cs" />
     <Compile Include="Core\ComplexMath.cs" />
@@ -102,6 +106,7 @@
     <Compile Include="Functions\AdvancedMath_Inverse.cs" />
     <Compile Include="Functions\AdvancedMath_Kelvin.cs" />
     <Compile Include="Functions\AdvancedMath_Polylog.cs" />
+    <Compile Include="Functions\Permutation.cs" />
     <Compile Include="Functions\SolutionPair.cs" />
     <Compile Include="Matrices\ColumnVector.cs" />
     <Compile Include="Matrices\LUDecomposition.cs" />
