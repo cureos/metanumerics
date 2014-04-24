@@ -1,6 +1,9 @@
 # git ignore file
 [Bb]in/
 [Oo]bj/
+Numerics/Backup/
+Numerics/TestResults/
+UpgradeLog.htm
 *.suo
 *.user
 *.ide

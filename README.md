@@ -8,16 +8,12 @@ This is a manual fork of *ichbin's* [Meta Numerics](https://metanumerics.codeple
 The portable class library currently targets:
 
 * Windows Store applications
-* .NET Framework version 4 or higher
-* Windows Phone version 7 and higher
-* Silverlight version 4 or higher
-* XBox 360
-
-By manually re-targeting the PCL project, the library can also be built to target:
-
-* Mono for Android
-* Mono Touch
+* .NET Framework version 4 and higher
+* Windows Phone version 8
+* Silverlight version 5
+* Xamarin.Android
+* Xamarin.iOS
 
 The solution contains one portable and one .NET only class library project. Except for binary serialization and ADO.NET support that is only available in the .NET dedicated library, these two projects share exactly the same code.
 
-*Portable Meta Numerics* aims to follow closely the updates of source code and binary releases made of *ichbin's Meta Numerics*. Currently, *Portable Meta Numerics* is related to *Meta Numerics* changeset [72657](https://metanumerics.codeplex.com/SourceControl/changeset/72657).
+*Portable Meta Numerics* aims to follow closely the updates of source code and binary releases made of *ichbin's Meta Numerics*. Currently, *Portable Meta Numerics* is associated with *Meta Numerics* changeset [72728](https://metanumerics.codeplex.com/SourceControl/changeset/72728) committed on April 23, 2014.
