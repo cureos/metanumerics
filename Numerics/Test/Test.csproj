@@ -145,9 +145,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Numerics\Core.csproj">
-      <Project>{1caf1461-33a0-4792-bf02-9b837e06e76a}</Project>
-      <Name>Core</Name>
+    <ProjectReference Include="..\Numerics\Portable.Core.csproj">
+      <Project>{c43715a0-8274-49a9-80cb-88d24fdbf89a}</Project>
+      <Name>Portable.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

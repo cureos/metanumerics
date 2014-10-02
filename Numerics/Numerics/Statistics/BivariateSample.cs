@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Globalization;
 
 using Meta.Numerics;
-using Meta.Numerics.Functions;
+using Meta.Numerics.Analysis;
 using Meta.Numerics.Matrices;
 using Meta.Numerics.Statistics.Distributions;
 
@@ -651,9 +651,8 @@ namespace Meta.Numerics.Statistics {
             double b0 = Covariance / X.Variance / Y.Variance;
             double a0 = Math.Log(p / q) - b0 * X.Mean;
 
-            Func<double[],double> f = delegate (double[] a) {
-
-                // define a logistic log-likelyhood function
+            // define a logistic log-likelyhood function
+            Func<IList<double>,double> f = delegate (IList<double> a) {
                 double L = 0.0;
                 for (int i = 0; i < Count; i++) {
                     double x = xData[i];
@@ -671,9 +670,11 @@ namespace Meta.Numerics.Statistics {
                 return(L);
             };
 
-            SpaceExtremum m = FunctionMath.FindMinimum(f, new double[2] { a0, b0 });
+            MultiExtremum m = MultiFunctionMath.FindMinimum(f, new double[2] { a0, b0 });
+            return (new FitResult(m.Location, m.HessianMatrix.Inverse(), null));
 
-            return (new FitResult(m.Location(), m.Curvature().Inverse(), null));
+            //SpaceExtremum m = FunctionMath.FindMinimum(f, new double[2] { a0, b0 });
+            //return (new FitResult(m.Location(), m.Curvature().Inverse(), null));
 
         }
 

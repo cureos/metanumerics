@@ -75,6 +75,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Analysis\EvaluationResult.cs" />
     <Compile Include="Analysis\EvaluationSettings.cs" />
     <Compile Include="Analysis\Extremum.cs" />
     <Compile Include="Analysis\FunctionMath.cs" />
@@ -85,6 +86,8 @@
     <Compile Include="Analysis\FunctionMath_MultiIntegrate.cs" />
     <Compile Include="Analysis\FunctionMath_Roots.cs" />
     <Compile Include="Analysis\IntegrationResult.cs" />
+    <Compile Include="Analysis\MultiExtremum.cs" />
+    <Compile Include="Analysis\MultiFunctionMath.cs" />
     <Compile Include="Analysis\MultiFunctionMath_Extrema.cs" />
     <Compile Include="Analysis\MultiFunctionMath_Extrema_DifferentialEvolution.cs" />
     <Compile Include="Analysis\MultiFunctionMath_Extrema_ModelTrust.cs" />
