@@ -83,11 +83,13 @@
     <Compile Include="Analysis\FunctionMath_Extrema.cs" />
     <Compile Include="Analysis\FunctionMath_Integrate.cs" />
     <Compile Include="Analysis\FunctionMath_MultiExtrema.cs" />
-    <Compile Include="Analysis\FunctionMath_MultiIntegrate.cs" />
+    <Compile Include="Analysis\SobolSequence.cs" />
     <Compile Include="Analysis\FunctionMath_Roots.cs" />
     <Compile Include="Analysis\IntegrationResult.cs" />
     <Compile Include="Analysis\MultiExtremum.cs" />
     <Compile Include="Analysis\MultiFunctionMath.cs" />
+    <Compile Include="Analysis\MultiFunctionMath_Roots.cs" />
+    <Compile Include="Analysis\MultiFunctor.cs" />
     <Compile Include="Analysis\MultiFunctionMath_Extrema.cs" />
     <Compile Include="Analysis\MultiFunctionMath_Extrema_DifferentialEvolution.cs" />
     <Compile Include="Analysis\MultiFunctionMath_Extrema_ModelTrust.cs" />
@@ -128,7 +130,7 @@
     </Compile>
     <Compile Include="SignalProcessing\FourierAlgorithms.cs" />
     <Compile Include="SignalProcessing\FourierTransformer.cs" />
-    <Compile Include="Special\Spin.cs" />
+    <Compile Include="Functions\Spin.cs" />
     <Compile Include="Functions\AdvancedMath_Harmonic.cs" />
     <Compile Include="Functions\AdvancedMath_Lambert.cs" />
     <Compile Include="Functions\AdvancedMath_ModifiedBessel.cs" />
@@ -161,8 +163,8 @@
     <Compile Include="Matrices\VectorBase.cs" />
     <Compile Include="Matrices\Vectors.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Special\SpinMath.cs" />
-    <Compile Include="Special\SpinState.cs" />
+    <Compile Include="Functions\SpinMath.cs" />
+    <Compile Include="Functions\SpinState.cs" />
     <Compile Include="Statistics\Anova.cs" />
     <Compile Include="Statistics\BinaryContingencyTable.cs" />
     <Compile Include="Statistics\BivariateSample.cs" />
