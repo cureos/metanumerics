@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Meta.Numerics</RootNamespace>
-    <AssemblyName>Portable.Meta.Numerics</AssemblyName>
+    <AssemblyName>Meta.Numerics</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Profile328</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -39,7 +39,8 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+	<IntermediateOutputPath>obj\Portable\Debug</IntermediateOutputPath>
+    <OutputPath>bin\Portable\Debug\</OutputPath>
     <DefineConstants>TRACE;DEBUG;SHO</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -47,10 +48,12 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+	<IntermediateOutputPath>obj\Portable\Release</IntermediateOutputPath>
+    <OutputPath>bin\Portable\Release\</OutputPath>
     <DefineConstants>TRACE;SHO</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Portable\Release\Meta.Numerics.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
