@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reflection;
+using System.Resources;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
@@ -11,6 +12,7 @@ using System.Reflection;
 [assembly: AssemblyCopyright("Copyright © Meta Numerics 2008-2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
+[assembly: NeutralResourcesLanguage("en-US")]
 
 // CLS compliance
 [assembly: CLSCompliant(true)]
