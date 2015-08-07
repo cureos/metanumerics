@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Portable.Meta.Numerics</id>
+    <version>3.1.0.73149</version>
+	<title>Portable Meta Numerics</title>
+    <authors>David Wright</authors>
+    <owners>David Wright; Anders Gustafsson, Cureos AB</owners>
+    <licenseUrl>http://metanumerics.codeplex.com/license</licenseUrl>
+    <projectUrl>https://github.com/cureos/metanumerics</projectUrl>
+    <iconUrl>http://www.meta-numerics.net/Images/Riemann128.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <summary>A Portable Class Library for numeric computing with support for statistics, matrix algebra, and advanced functions.</summary>
+    <description>A Portable Class Library for numeric computing with support for statistics, matrix algebra, and advanced functions. 
+	
+Supported platforms .NET 4 and higher, Windows 8 and higher, Windows Phone Silverlight 8 and 8.1, Windows Phone 8.1 and higher, Silverlight 5, Xamarin Android, Xamarin iOS (Classic and Unified API).
+
+Portable Class Library is distributed by Cureos AB and is identical to Meta Numerics for .NET except missing ADO.NET and binary serialization support.</description>
+    <tags>numeric scientific technical math statistics matrix fft pcl xamarin</tags>
+	<language>en-US</language>
+  </metadata>
+    <files>
+        <file src="..\Numerics\Numerics\bin\Portable\Release\Meta.Numerics.dll" target="lib\portable-net4+sl5+netcore45+wpa81+wp8" />
+        <file src="..\Numerics\Numerics\bin\Portable\Release\Meta.Numerics.pdb" target="lib\portable-net4+sl5+netcore45+wpa81+wp8" />
+        <file src="..\Numerics\Numerics\bin\Portable\Release\Meta.Numerics.xml" target="lib\portable-net4+sl5+netcore45+wpa81+wp8" />
+    </files>
+</package>
