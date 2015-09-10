@@ -16,8 +16,8 @@ The portable class library currently targets:
 * Windows Phone 8.1
 * Silverlight version 5
 * Xamarin.Android
-* Xamarin.iOS
+* Xamarin.iOS (Classic and Unified API)
 
 The solution contains one portable and one .NET only class library project. Except for binary serialization and ADO.NET support that is only available in the .NET dedicated library, these two projects share exactly the same code.
 
-*Portable Meta Numerics* aims to follow closely the updates of source code and binary releases made of *David Wright's Meta Numerics*. Currently, *Portable Meta Numerics* is associated with *Meta Numerics* changeset [73149](https://metanumerics.codeplex.com/SourceControl/changeset/73149) committed on February 16, 2015.
+*Portable Meta Numerics* aims to follow closely the updates of source code and binary releases made of *David Wright's Meta Numerics*. Currently, *Portable Meta Numerics* is associated with *Meta Numerics* changeset [73356](https://metanumerics.codeplex.com/SourceControl/changeset/73356) committed on September 10, 2015.

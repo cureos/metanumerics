@@ -39,7 +39,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-	<IntermediateOutputPath>obj\Portable\Debug</IntermediateOutputPath>
+    <IntermediateOutputPath>obj\Portable\Debug</IntermediateOutputPath>
     <OutputPath>bin\Portable\Debug\</OutputPath>
     <DefineConstants>TRACE;DEBUG;SHO</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -48,7 +48,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-	<IntermediateOutputPath>obj\Portable\Release</IntermediateOutputPath>
+    <IntermediateOutputPath>obj\Portable\Release</IntermediateOutputPath>
     <OutputPath>bin\Portable\Release\</OutputPath>
     <DefineConstants>TRACE;SHO</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -74,6 +74,7 @@
     <Compile Include="Analysis\FunctionMath_Extrema.cs" />
     <Compile Include="Analysis\FunctionMath_Integrate.cs" />
     <Compile Include="Analysis\FunctionMath_MultiExtrema.cs" />
+    <Compile Include="Analysis\FunctionMath_Odes.cs" />
     <Compile Include="Analysis\SobolSequence.cs" />
     <Compile Include="Analysis\FunctionMath_Roots.cs" />
     <Compile Include="Analysis\IntegrationResult.cs" />
@@ -183,6 +184,7 @@
     <Compile Include="Statistics\Distributions\LognormalDistribution.cs" />
     <Compile Include="Statistics\Distributions\MannWhitneyDistribution.cs" />
     <Compile Include="Statistics\Distributions\MomentMath.cs" />
+    <Compile Include="Statistics\Distributions\NoncentralChiSquaredDistribution.cs" />
     <Compile Include="Statistics\Distributions\NormalDistribution.cs" />
     <Compile Include="Statistics\Distributions\ParetoDistribution.cs" />
     <Compile Include="Statistics\Distributions\PearsonRDistribution.cs" />
@@ -202,6 +204,7 @@
     <Compile Include="Statistics\MultivariateSample.cs" />
     <Compile Include="Statistics\PrincipalComponentAnalysis.cs" />
     <Compile Include="Statistics\Sample.cs" />
+    <Compile Include="Statistics\StreamingSampleSummary.cs" />
     <Compile Include="Statistics\TestResult.cs" />
     <Compile Include="Statistics\UncertainMeasurement.cs" />
     <Compile Include="Statistics\UncertainMeasurementSample.cs" />

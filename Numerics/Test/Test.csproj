@@ -93,6 +93,7 @@
     <Compile Include="MultiExtremumTest.cs" />
     <Compile Include="MultiIntegrateTest.cs" />
     <Compile Include="NullDistributionTests.cs" />
+    <Compile Include="OdeTest.cs" />
     <Compile Include="PermutationTest.cs" />
     <Compile Include="PolynomialTest.cs" />
     <Compile Include="RandomTest.cs" />
@@ -146,6 +147,11 @@
       <Project>{c43715a0-8274-49a9-80cb-88d24fdbf89a}</Project>
       <Name>Portable.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Bug8021.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
